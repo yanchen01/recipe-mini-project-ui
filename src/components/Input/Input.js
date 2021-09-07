@@ -8,9 +8,12 @@ const Input = () => {
 
 	const ingredientInputHandler = async (e) => {
 		e.preventDefault();
-		const API_URL = 'https://api.nal.usda.gov/fdc/v1/foods';
-		const res = await axios.get(`${API_URL}/search?api_key=DEMO_KEY&query=${JSON.stringify(ingredientInput)}`);
-		console.log(res.data);
+		const API_URL = 'http://localhost:3000/api/search';
+		const body = {
+			query: ingredientInput
+		};
+		const res = await axios.post(`${API_URL}`, body);
+		console.log('BACKEND API DATA: ', res);
 	};
 
 	return (
