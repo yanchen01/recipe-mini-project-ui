@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { recipeActions } from '../../store/recipe-slice';
+import { authActions } from '../../store/auth-slice';
+
 import { useNavigation } from '@react-navigation/native';
+
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -60,31 +65,6 @@ const ItemContainer = styled.View`
 	margin-top: 10px;
 `;
 
-/*
-<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-<TouchableOpacity style={{ marginHorizontal: 0 }}}>
-	<AntDesign name="pluscircle" size={18} color="#212121" />
-</TouchableOpacity>
-<TouchableOpacity style={{ marginHorizontal: 20 }}>
-	<AntDesign name="minuscircle" size={18} color="#212121" />
-</TouchableOpacity>
-</View>
-
-
-const changeIngredientQuantityHandler = (name, action) => {
-	const index = ingredients.findIndex((ingr) => ingr.name === name);
-	const newIngredients = [ ...ingredients ];
-
-	if (action === 'inc') {
-		newIngredients[index].servings++;
-	} else {
-		newIngredients[index].servings--;
-	}
-
-	setIngredients(newIngredients);
-};
-*/
-
 const Item = ({ name, servings }) => (
 	<ItemContainer>
 		<Text>{name}</Text>
@@ -93,32 +73,20 @@ const Item = ({ name, servings }) => (
 );
 
 const AddRecipeForm = () => {
+	const ingredients = useSelector((state) => state.recipe.ingredients);
+	const recipeName = useSelector((state) => state.recipe.name);
+	const dispatch = useDispatch();
+
 	const navigation = useNavigation();
-	const [ ingredients, setIngredients ] = useState([]);
-	const [ recipeInput, setRecipeInput ] = useState('');
+
 	const [ ingredientInput, setIngredientInput ] = useState('');
-	const [ recipe, setRecipe ] = useState({});
 
 	const addIngredientHandler = (e) => {
 		e.preventDefault();
 
-		const ingredient = {
-			name: ingredientInput.trim(),
-			servings: 1
-		};
+		dispatch(recipeActions.addIngredient(ingredientInput));
 
-		const idx = ingredients.findIndex((ingr) => ingr.name === ingredientInput);
-
-		if (idx !== -1) {
-			const newIngredients = [ ...ingredients ];
-
-			newIngredients[idx].servings++;
-			setIngredients(newIngredients);
-		} else {
-			setIngredients([ ...ingredients, ingredient ]);
-		}
-
-		alert(`ingredient added: ${ingredient.name}`);
+		alert(`ingredient added: ${ingredientInput}`);
 		setIngredientInput('');
 	};
 
@@ -130,12 +98,21 @@ const AddRecipeForm = () => {
 	const saveRecipeHandler = (e) => {
 		e.preventDefault();
 
+		const imageUri =
+			'https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80';
+
 		const newRecipe = {
-			name: recipeInput.trim(),
+			id: recipeName + ingredients.length.toString(),
+			name: recipeName.trim(),
+			calories: 100,
+			imageUri,
 			ingredients
 		};
 
-		setRecipe(newRecipe);
+		dispatch(authActions.addRecipe(newRecipe));
+		dispatch(recipeActions.setRecipeName(''));
+
+		navigation.goBack();
 
 		alert(`Recipe: ${newRecipe.name} \n # of Ingredients: ${newRecipe.ingredients.length}`);
 	};
@@ -148,7 +125,11 @@ const AddRecipeForm = () => {
 
 			<InputContainer>
 				<Label>{'Name your recipe: '}</Label>
-				<TextInput style={styles.input} onChangeText={setRecipeInput} value={recipeInput} />
+				<TextInput
+					style={styles.input}
+					onChangeText={(name) => dispatch(recipeActions.setRecipeName(name))}
+					value={recipeName}
+				/>
 			</InputContainer>
 
 			<InputContainer>
@@ -169,7 +150,7 @@ const AddRecipeForm = () => {
 
 			<View style={{ flex: 1, maxHeight: 500 }}>
 				<P>
-					Ingredients for <P style={{ fontWeight: 'bold' }}>{recipeInput}</P>
+					Ingredients for <P style={{ fontWeight: 'bold' }}>{recipeName}</P>
 				</P>
 				<FlatList data={ingredients} renderItem={renderItem} keyExtractor={(ingredient) => ingredient.name} />
 			</View>

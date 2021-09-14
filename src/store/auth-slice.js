@@ -16,20 +16,6 @@ const initialAuthState = {
 			imageUri:
 				'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=602&q=80',
 			calories: 1200
-		},
-		{
-			id: 3,
-			name: 'Salad',
-			imageUri:
-				'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-			calories: 350
-		},
-		{
-			id: 4,
-			name: 'Salad',
-			imageUri:
-				'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-			calories: 350
 		}
 	]
 };
@@ -45,7 +31,7 @@ const authSlice = createSlice({
 			state.isAuthenticated = false;
 		},
 		addRecipe(state, action) {
-			state.recipes.push(action.payload.recipe);
+			state.recipes.push(action.payload);
 		}
 	}
 });
