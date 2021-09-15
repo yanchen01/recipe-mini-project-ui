@@ -13,7 +13,7 @@ const Container = styled.SafeAreaView`
 `;
 
 const RecipeContainer = styled.View`
-	flex: 0.8;
+	flex: 1;
 	padding: 10px 10px;
 	margin: 50px 0;
 	background-color: #fafafa;
@@ -44,13 +44,13 @@ const Home = ({ navigation }) => {
 		<Container>
 			<WelcomeText> Welcome, {user.fullName}!</WelcomeText>
 			<RecipeContainer>
-				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-					<RecipeText>Here's your list of recipes: </RecipeText>
+				<View style = {{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+					<RecipeText> Here's your list of recipes: </RecipeText>
 					<TouchableOpacity onPress={addRecipeHandler}>
 						<AntDesign name = "pluscircle" size={20} color="#212121" />
 					</TouchableOpacity>
 				</View>
-				<RecipeList recipes={recipes} />
+				<RecipeList recipes = {recipes} />
 			</RecipeContainer>
 		</Container>
 	);
