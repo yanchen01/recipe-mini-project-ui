@@ -24,7 +24,6 @@ const recipeSlice = createSlice({
 					name: action.payload.trim(),
 					servings: 1
 				};
-
 				state.ingredients.push(ingredient);
 			}
 		},
