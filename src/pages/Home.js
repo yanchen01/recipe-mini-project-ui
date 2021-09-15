@@ -35,7 +35,6 @@ const RecipeText = styled.Text`
 const Home = ({ navigation }) => {
 	const recipes = useSelector((state) => state.auth.recipes);
 	const user = useSelector((state) => state.auth.user);
-
 	const addRecipeHandler = () => {
 		navigation.navigate('AddRecipe');
 	};
