@@ -8,3 +8,13 @@ const transfer_barcode = ({ type, data }) => {
 const api_work = () => {
 
 }
+
+let get_calories = () => {
+    const sum = 0;
+    for (var i = 0; i < csvData.length; i++) {
+        const temp = 0;
+        const axios = require('axios');
+        const res = await axios.get();
+        sum = sum + temp;
+    }
+}
