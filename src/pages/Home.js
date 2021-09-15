@@ -47,7 +47,7 @@ const Home = ({ navigation }) => {
 				<View style = {{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 					<RecipeText> Here's your list of recipes: </RecipeText>
 					<TouchableOpacity onPress={addRecipeHandler}>
-						<AntDesign name = "pluscircle" size={20} color="#212121" />
+						<AntDesign name="pluscircle" size={20} color="#212121" />
 					</TouchableOpacity>
 				</View>
 				<RecipeList recipes = {recipes} />
