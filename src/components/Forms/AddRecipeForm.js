@@ -86,7 +86,6 @@ const AddRecipeForm = () => {
 
 		dispatch(recipeActions.addIngredient(ingredientInput));
 
-		alert(`ingredient added: ${ingredientInput}`);
 		setIngredientInput('');
 	};
 
@@ -109,12 +108,10 @@ const AddRecipeForm = () => {
 			ingredients
 		};
 
+		navigation.goBack();
 		dispatch(authActions.addRecipe(newRecipe));
 		dispatch(recipeActions.setRecipeName(''));
-
-		navigation.goBack();
-
-		alert(`Recipe: ${newRecipe.name} \n # of Ingredients: ${newRecipe.ingredients.length}`);
+		dispatch(recipeActions.clearIngredients());
 	};
 
 	const renderItem = ({ item }) => <Item name={item.name} servings={item.servings} />;

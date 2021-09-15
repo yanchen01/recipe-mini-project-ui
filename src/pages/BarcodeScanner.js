@@ -25,7 +25,6 @@ const BarcodeScanner = ({ navigation }) => {
 			barcode = data.slice(1);
 			dispatch(recipeActions.addIngredient(barcode));
 		}
-		alert(`Bar code with type ${type} and data ${barcode} has been scanned!`);
 		navigation.goBack();
 	};
 

@@ -27,6 +27,9 @@ const recipeSlice = createSlice({
 
 				state.ingredients.push(ingredient);
 			}
+		},
+		clearIngredients(state) {
+			state.ingredients = [];
 		}
 	}
 });

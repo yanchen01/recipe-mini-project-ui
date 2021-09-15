@@ -36,15 +36,15 @@ const RecipeText = styled.Text`
 
 const Home = ({ navigation }) => {
 	const recipes = useSelector((state) => state.auth.recipes);
+	const user = useSelector((state) => state.auth.user);
 
 	const addRecipeHandler = () => {
-		console.log('Adding recipe...');
 		navigation.navigate('AddRecipe');
 	};
 
 	return (
 		<Container>
-			<WelcomeText>Welcome, user!</WelcomeText>
+			<WelcomeText>Welcome, {user.fullName}!</WelcomeText>
 			<RecipeContainer>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 					<RecipeText>Here's your list of recipes: </RecipeText>

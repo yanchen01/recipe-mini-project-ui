@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialAuthState = {
 	isAuthenticated: false,
+	user: {},
 	recipes: [
 		{
 			id: 1,
@@ -24,11 +25,9 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState: initialAuthState,
 	reducers: {
-		login(state) {
+		login(state, action) {
 			state.isAuthenticated = true;
-		},
-		logout(state) {
-			state.isAuthenticated = false;
+			state.user = action.payload;
 		},
 		addRecipe(state, action) {
 			state.recipes.push(action.payload);
