@@ -1,10 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
 import { View, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import RecipeList from '../components/RecipeList/RecipeList';
-
 import styled from 'styled-components';
 
 const Container = styled.SafeAreaView`
@@ -44,12 +42,12 @@ const Home = ({ navigation }) => {
 
 	return (
 		<Container>
-			<WelcomeText>Welcome, {user.fullName}!</WelcomeText>
+			<WelcomeText> Welcome, {user.fullName}!</WelcomeText>
 			<RecipeContainer>
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 					<RecipeText>Here's your list of recipes: </RecipeText>
 					<TouchableOpacity onPress={addRecipeHandler}>
-						<AntDesign name="pluscircle" size={20} color="#212121" />
+						<AntDesign name = "pluscircle" size={20} color="#212121" />
 					</TouchableOpacity>
 				</View>
 				<RecipeList recipes={recipes} />
