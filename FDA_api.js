@@ -1,20 +1,22 @@
-import React from 'react';
+const axios = require('axios')
+const JOULES_TO_CAL = 1 / 4.184
 
-const transfer_barcode = ({ type, data }) => {
-    alert(`Bar code with type ${type} and data ${data} has been scanned.`);
-    console.log(url_head + data);
-}
+async function getIngredientsCalories (ingredients) {
+    const API_URL= 'http://api.nal.usda.gov/fdc/v1/foods';
 
-const api_work = () => {
-
-}
-
-let get_calories = () => {
-    const sum = 0;
-    for (var i = 0; i < csvData.length; i++) {
-        const temp = 0;
-        const axios = require('axios');
-        const res = await axios.get();
-        sum = sum + temp;
+    let total_Cal = 0;
+    
+    for (let ingredient of ingredients) {
+        const response = await axios.get(`${API_URL}/search?api_DEMO_KEY&query=${JSON.stringify(ingredient.nmes)}`);
+        const item = response.data.foods.length > 0 ? response.data.foods[0] : null;
+        if (item) {
+            let energy_Obj = item.foodNutrients.filter((nutrient) => nutrient.nutrientId === 1008);
+            energy_Obj = energy_Obj[0];
+            total_Cal += energy_Obj.value * JOULES_TO_CAL;
+        }
     }
+
+    return Math.round(total_Cal);
 }
+
+exports.getIngredientsCalories = getIngredientsCalories;
