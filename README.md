@@ -23,7 +23,7 @@ We also included *Github Actions* to deploy our Backend API automatically to Her
 <video src="Demo_Video.mp4">
 
 
-### Home.js
+# Home.js
 
 const Container: This is the container for the whole user interface.
 const RecipeContainer: This is the container for the receipt, which is right in the center of the APP.
