@@ -22,6 +22,9 @@ We also included *Github Actions* to deploy our Backend API automatically to Her
 * const Home: This contains the main frame of the architecture.
 * It will return the layout of our home screen.
 
+# Description of Login.js
+First, we will ask the users to enter their accounts' information, which includes their e-mail addresses, passwords and usernames on this page. After they enter the information, the program will automatically connected to the authentication and check whether the data is valid or not.
+
 # Documentation
 * [Architecture Diagram](architecture_diagram.png)
 <img src="architecture_diagram.png">
