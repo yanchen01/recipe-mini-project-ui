@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { recipeActions } from '../../store/recipe-slice';
 import { authActions } from '../../store/auth-slice';
+import axios from 'axios';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -94,16 +95,21 @@ const AddRecipeForm = () => {
 		navigation.navigate('ScanBarcode');
 	};
 
-	const saveRecipeHandler = (e) => {
+	const saveRecipeHandler = async (e) => {
 		e.preventDefault();
 
 		const imageUri =
 			'https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80';
 
+		const API_URL = 'https://recipe-mini-proj.herokuapp.com';
+		const response = await axios.post(`${API_URL}/api/search`, {
+			ingredients
+		});
+
 		const newRecipe = {
 			id: recipeName + ingredients.length.toString(),
 			name: recipeName.trim(),
-			calories: 100,
+			calories: response.data.calories > 0 ? response.data.calories.toString() : '0',
 			imageUri,
 			ingredients
 		};
