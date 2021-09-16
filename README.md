@@ -37,7 +37,8 @@ First, we will ask the users to enter their accounts' information, which include
 ## Description of Signup.js
 If the users haven't registered any accounts in the database, the app will ask them to sign up for their own accounts. On this page, the program will help users to create accounts. Users will provide their full names, e-mail addresses and passwords.
 
-## Description of FDA_api.js
+## Description of LoginStyle.js & SignupStyle.js
+In these two screens, we set the style for containers and the fonts inside.
 
 ## Demo Video
 * [Demo Video](Demo_Video.mp4)
