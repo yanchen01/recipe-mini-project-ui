@@ -9,7 +9,7 @@ import { authActions } from '../store/auth-slice';
 import { Image, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 import styles from './LoginStyle';
 
-export default function LoginScreen({ navigation }) {
+const Login = ({ navigation }) => {
 	const dispatch = useDispatch();
 
 	const [ email, setEmail ] = useState('');
@@ -93,4 +93,6 @@ export default function LoginScreen({ navigation }) {
 			</ScrollView>
 		</View>
 	);
-}
+};
+
+export default Login;
