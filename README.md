@@ -30,7 +30,6 @@ In this file, the main frame and the fonts for the adding recipe container are s
 ## Description of BarcodeScanner.js
 This screen allows user to scan barcode from an item and adds the barcode to a global ingredients list for global state. In this screen, we will first check whether we have permission to get access to users’ camera. If we don’t have permission, we will remind users and return text “No access to camera”. If we gain the camera’s permission, we will use the scanner to get food’s unique code string. Then we will navigate to our another API with the string and use the API to get the food’s data.
 
-
 ## Description of Login.js
 First, we will ask the users to enter their accounts' information, which includes their e-mail addresses, passwords and usernames on this page. After they enter the information, the program will automatically connected to the authentication and check whether the data is valid or not.
 
