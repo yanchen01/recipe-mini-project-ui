@@ -28,6 +28,5 @@ const RecipeContainer: This is the container for the receipt, which is right in 
 const WelcomeText: This is the text of “Welcome, user!”.
 const RecipeText: This contains the name of the recipe.
 const Home: This contains the main frame of the architecture.
-
 It will return the layout of our home screen.
 
