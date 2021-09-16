@@ -24,7 +24,6 @@ We also included *Github Actions* to deploy our Backend API automatically to Her
 
 
 # Home.js
-
 const Container: This is the container for the whole user interface.
 const RecipeContainer: This is the container for the receipt, which is right in the center of the APP.
 const WelcomeText: This is the text of “Welcome, user!”.
